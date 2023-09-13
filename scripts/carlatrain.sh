@@ -12,12 +12,14 @@ lr=1e-4
 
 for task_name in ${easy_task_list[@]};
 do
-LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7	CUDA_VISIBLE_DEVICES=5  python carlatrain.py \
+LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7	
+CUDA_VISIBLE_DEVICES=0
+HYDRA_FULL_ERROR=1 xvfb-run -a python carlatrain.py \
                                                         task=${task_name} \
                                                         seed=3 \
                                                         action_repeat=${action_repeat} \
                                                         use_wandb=${use_wandb} \
-                                                        use_tb=False \
+                                                        use_tb=True \
                                                         num_train_frames=${frames} \
                                                         save_snapshot=${save_snapshot} \
                                                         save_video=False \
