@@ -3,7 +3,26 @@
 ## Config file
 The config file is located at `RL-ViGen/cfgs/carlaenv10_config.yaml`(for training) and `RL-ViGen/cfgs/carlaenv10_eval_config.yaml`(for evaluation). You can change the config file for different setups.
 
+## Training script
+
+You can specify the training agent in `cfgs/config.yaml`.
+
+```
+DISPLAY= ./CarlaUE4.sh -carla-port=2018 -opengl # Start the CARLA client under third_party/CARLA_0.9.10
+bash scripts/carlatrain.sh
+```
+
+
 ## Testing script
+
+For evaluation, you should change `model_dir` to your own saved model folder first and run the evaluation code as follow:
+```
+bash scripts/eval.sh 
+```
+You should change the `env`, `task_name`, `test_agent` for different evaluation in the `eval.sh`.
+
+## Env maker
+
 ```
 from carlaenv.utils import make_env_10
 action_repeat = 2
